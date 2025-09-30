@@ -177,7 +177,31 @@ function validate() {
   const isLocationValid = validateLocation();
   const isCheckbox1Valid = validateCheckbox1();
   
-  return isFirstValid && isLastValid && isEmailValid && isBirthdateValid && isQuantityValid && isLocationValid && isCheckbox1Valid;
+  const isValid = isFirstValid && isLastValid && isEmailValid && isBirthdateValid && isQuantityValid && isLocationValid && isCheckbox1Valid;
+  
+  if (isValid) {
+    showConfirmation();
+    return false; // Empêche la soumission normale du formulaire
+  }
+  
+  return false; // Empêche la soumission si validation échoue
+}
+
+// Show confirmation message
+function showConfirmation() {
+  const modalBody = document.querySelector(".modal-body");
+  const form = document.querySelector("form[name='reserve']");
+  
+  // Créer le message de confirmation
+  const confirmationHTML = `
+    <div class="confirmation-message">
+      <h2>Merci pour votre inscription</h2>
+      <button class="btn-submit" onclick="closeModal()">Fermer</button>
+    </div>
+  `;
+  
+  // Remplacer le contenu du formulaire
+  modalBody.innerHTML = confirmationHTML;
 }
 
 
