@@ -220,15 +220,16 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 0.6em;
   color: #e54858;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
-  line-height: 0.3;
+  text-align: left;
+  line-height: 1.2;
   opacity: 0;
   transition: 0.3s;
+  font-weight: normal;
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;

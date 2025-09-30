@@ -108,7 +108,7 @@ function validateBirthdate() {
   const birthdateData = birthdate.closest(".formData");
   
   if (!birthdateValue) {
-    birthdateData.setAttribute("data-error", "Veuillez entrer votre date de naissance.");
+    birthdateData.setAttribute("data-error", "Vous devez entrer votre date de naissance.");
     birthdateData.setAttribute("data-error-visible", "true");
     return false;
   } else {
@@ -144,7 +144,7 @@ function validateLocation() {
   });
   
   if (!isChecked) {
-    locationData.setAttribute("data-error", "Veuillez sélectionner une ville.");
+    locationData.setAttribute("data-error", "Vous devez choisir une option.");
     locationData.setAttribute("data-error-visible", "true");
     return false;
   } else {
@@ -158,7 +158,7 @@ function validateCheckbox1() {
   const checkbox1Data = checkbox1.closest(".formData");
   
   if (!checkbox1.checked) {
-    checkbox1Data.setAttribute("data-error", "Vous devez accepter les conditions d'utilisation.");
+    checkbox1Data.setAttribute("data-error", "Vous devez vérifier que vous acceptez les termes et conditions.");
     checkbox1Data.setAttribute("data-error-visible", "true");
     return false;
   } else {
