@@ -1,0 +1,39 @@
+  /********************************** Variable **********************************/
+  :root {
+    --font-default: "DM Sans", Arial, Helvetica, sans-serif;
+    --font-slab: var(--font-default);
+    --modal-duration: 0.8s;
+
+    /*Borders radius*/
+    --border-radius-primary: 8px;
+    --border-radius-secondary: 15px;
+
+    /*Media queries*/
+    --mobile-width: 540px;
+    --tablet-width: 800px;
+    --desktop-width: 1024px;
+    
+    /* Couleurs principales */
+    --color-primary: #fe142f;
+    --color-primary-hover: #3876ac;
+    --color-secondary: #232323;
+    
+    /* Couleurs de texte */
+    --color-text-primary: #000000;
+    --color-text-secondary: #ffffff;
+    --color-text-white: #fff;
+    --color-text-black: #000;
+    
+    /* Couleurs de fond */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #232323;
+    --color-bg-light: #c4c4c4;
+    
+    /* Couleurs d'état */
+    --color-error: #e54858;
+    --color-success: #279e7a;
+    --color-border: #ccc;
+    --color-border-light: #f00;
+  }
+
+  

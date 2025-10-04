@@ -195,7 +195,9 @@ function showConfirmation() {
   // Créer le message de confirmation
   const confirmationHTML = `
     <div class="confirmation-message">
-      <h2>Merci pour votre inscription</h2>
+      <div class="message-container">
+        <h2>Merci pour votre inscription</h2>
+      </div>
       <button class="btn-submit" onclick="closeModal()">Fermer</button>
     </div>
   `;
