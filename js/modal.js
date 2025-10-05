@@ -60,7 +60,7 @@ function closeModal() {
 
 /**
  * Valide le champ prénom
- * Vérifie que le prénom contient au moins 2 caractères
+ * Vérifie que le prénom contient au moins 2 caractères et respecte le format alphabétique
  * @returns {boolean} true si valide, false sinon
  */
 function validateFirst() {
@@ -68,8 +68,15 @@ function validateFirst() {
   const firstValue = first.value.trim();
   const firstData = first.closest(".formData");
   
+  // Regex pour prénom : lettres, espaces, tirets, apostrophes (minimum 2 caractères)
+  const nameRegex = /^[a-zA-ZÀ-ÿ\s\-']{2,}$/;
+  
   if (firstValue.length < 2) {
     firstData.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du prénom.");
+    firstData.setAttribute("data-error-visible", "true");
+    return false;
+  } else if (!nameRegex.test(firstValue)) {
+    firstData.setAttribute("data-error", "Le prénom ne peut contenir que des lettres, espaces, tirets et apostrophes.");
     firstData.setAttribute("data-error-visible", "true");
     return false;
   } else {
@@ -80,7 +87,7 @@ function validateFirst() {
 
 /**
  * Valide le champ nom
- * Vérifie que le nom contient au moins 2 caractères
+ * Vérifie que le nom contient au moins 2 caractères et respecte le format alphabétique
  * @returns {boolean} true si valide, false sinon
  */
 function validateLast() {
@@ -88,8 +95,15 @@ function validateLast() {
   const lastValue = last.value.trim();
   const lastData = last.closest(".formData");
   
+  // Regex pour nom : lettres, espaces, tirets, apostrophes (minimum 2 caractères)
+  const nameRegex = /^[a-zA-ZÀ-ÿ\s\-']{2,}$/;
+  
   if (lastValue.length < 2) {
     lastData.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
+    lastData.setAttribute("data-error-visible", "true");
+    return false;
+  } else if (!nameRegex.test(lastValue)) {
+    lastData.setAttribute("data-error", "Le nom ne peut contenir que des lettres, espaces, tirets et apostrophes.");
     lastData.setAttribute("data-error-visible", "true");
     return false;
   } else {
