@@ -11,6 +11,7 @@
   /* Couleurs principales */
   --color-primary: #fe142f;
   --color-primary-hover: #3876ac;
+  --color-primary-hover-2: #C5003F;
   --color-secondary: #232323;
   
   /* Couleurs de texte */
@@ -57,6 +58,6 @@
 }
 .btn-submit:hover,
 .btn-signup:hover {
-  background: var(--color-error);
+  background: var(--color-primary-hover-2);
 }
   

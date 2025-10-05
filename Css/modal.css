@@ -27,7 +27,7 @@
 .content {
   margin: 0;
   width: 100%;
-  max-width: 600px;
+  max-width: 535px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #282828;
@@ -64,7 +64,7 @@ input {
   width: 100%;
   border-radius: 8px;
   font-size: 16px;
-  height: 48px;
+  height: 50px;
   border: 1px solid #ccc;
   background: white;
   color: #333;
@@ -222,9 +222,13 @@ input {
   transform: rotate(-45deg);
 }
 
+.bouton {
+  margin-inline: 8rem;
+}
+
 /* Style du bouton de soumission */
 .btn-submit {
-  background: #E60049;
+  background: var(--color-primary);
   border: none;
   padding: 15px 30px;
   font-size: 16px;
@@ -232,14 +236,26 @@ input {
   cursor: pointer;
   color: white;
   font-family: var(--font-default);
-  transition: background 0.3s ease;
+  transition: background 0.5s ease;
   text-transform: none;
   width: 100%;
-  margin-top: 20px;
+  margin: 20px 0;
+}
+
+@media screen and (max-width: 425px) {
+  .bouton {
+    margin-inline: 6rem;
+  }
+  
+  .btn-submit {
+    font-size: 14px;
+    padding: 9px 30px;
+  
+  }
 }
 
 .btn-submit:hover {
-  background: #C5003F;
+  background: var(--color-primary-hover-2);
 }
 
 /* custom select styles */
@@ -357,13 +373,13 @@ input {
 }
 
 .confirmation-message h2 {
-  font-size: 1.8rem;
+  font-size: 2.25rem;
   margin-bottom: 0;
   color: var(--color-text-white);
   font-weight: normal;
   font-family: var(--font-default);
   line-height: 1.3;
-  padding-inline: 5rem;
+  padding-inline: 3.2rem;
 }
 
 .confirmation-message .btn-submit {
@@ -386,7 +402,7 @@ input {
 }
 
 /* Mobile styles for popup full screen */
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 800px) {
   .bground {
     position: fixed;
     top: 0;
@@ -406,37 +422,42 @@ input {
   
   .content {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 80px);
     max-width: none;
     margin: 0;
     border-radius: 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    overflow-y: auto;
+    border-radius: 25px 25px 0 0;
   }
   
   .modal-body {
     width: 100%;
-    height: 100%;
-    padding: 20px;
+    min-height: 100%;
+    padding: 55px 20px 20px ;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
   }
   
   .confirmation-message {
     width: 100%;
     max-width: none;
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
   }
   
   .confirmation-message h2 {
-    font-size: 1.5rem;
+    font-size: 2.25rem;
     margin-bottom: 0;
     text-align: center;
   }

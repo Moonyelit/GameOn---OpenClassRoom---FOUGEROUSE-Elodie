@@ -41,8 +41,9 @@ body {
   font-weight: 500;
   padding: 12px 12px;
   text-decoration: none;
-  transition: all 0.2s ease;
   letter-spacing: 1px;
+  transition: all 0.7s ease;
+
 }
 
 .main-navbar {
@@ -52,10 +53,11 @@ body {
   margin-right:-4rem;
 }
 
-.topnav a:hover :not(.fa) {
+.topnav a:hover:not(.fa):not(.active) {
   background-color: var(--color-primary);
   color: var(--color-text-secondary);
   border-radius: var(--border-radius-primary);
+  padding: 10px 10px;
 }
 
 .topnav a.active {
@@ -85,10 +87,15 @@ body {
 /* Navigation responsive */
 @media screen and (max-width: 800px) {
   .topnav {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    background: var(--color-bg-primary);
     margin-right: 0;
-    padding: 0;
-    margin-block: 1.5rem;
+    padding: 2rem;
+    margin-block: 0;
   }
 
   .main-navbar {
@@ -106,6 +113,7 @@ body {
     color: var(--color-text-primary);
     top: 50%;
     transform: translateY(-50%);
+    margin-right: 1.5rem;
   }
 
   .fa-bars {
@@ -156,7 +164,7 @@ main {
 /* Responsive Main pour 800px et en dessous */
 @media screen and (max-width: 800px) {
   main {
-    padding-top: 0;
+    padding-top: 80px;
   }
 }
 
