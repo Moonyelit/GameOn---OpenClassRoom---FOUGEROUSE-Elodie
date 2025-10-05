@@ -24,17 +24,18 @@
       <img alt="logo" src="./assets/images/Logo.png" width="auto" height="auto" />
     </div>
     <div class="main-navbar">
-
       <a href="#" class="active"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À Propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
       <a href="javascript:void(0);" class="icon" onclick="editNav()">
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars" id="menuIcon"></i>
       </a>
     </div>
   </div>
-  </div>
+  
+  <!-- Overlay pour le menu mobile -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
   <main>
     <div class="hero-section">
       <h1 class="hero-headline">

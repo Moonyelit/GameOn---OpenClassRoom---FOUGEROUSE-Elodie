@@ -3,6 +3,8 @@
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
+  --menu-duration: 0.6s;
+  --menu-easing: cubic-bezier(0.4, 0, 0.2, 1);
 
   /*Borders radius*/
   --border-radius-primary: 8px;

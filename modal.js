@@ -1,11 +1,70 @@
+// Variables pour le menu burger
+let isMenuOpen = false;
+
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
+  const topnav = document.getElementById("myTopnav");
+  const overlay = document.getElementById("menuOverlay");
+  const icon = document.querySelector(".icon");
+  const menuIcon = document.getElementById("menuIcon");
+  
+  if (!isMenuOpen) {
+    // Ouvrir le menu
+    topnav.classList.add("responsive");
+    overlay.classList.add("active");
+    isMenuOpen = true;
+    
+    // Empêcher le scroll du body
+    document.body.style.overflow = "hidden";
+    
+    // Ajouter la classe active et changer l'icône en même temps
+    setTimeout(() => {
+      topnav.classList.add("active");
+      // Changer l'icône en croix avec l'animation du menu
+      menuIcon.className = "fa fa-times";
+    }, 50);
   } else {
-    x.className = "topnav";
+    closeMenu();
   }
 }
+
+function closeMenu() {
+  const topnav = document.getElementById("myTopnav");
+  const overlay = document.getElementById("menuOverlay");
+  const menuIcon = document.getElementById("menuIcon");
+  
+  if (isMenuOpen) {
+    // Animation de fermeture
+    topnav.classList.add("closing");
+    
+    // Fermer après l'animation
+    setTimeout(() => {
+      topnav.classList.remove("responsive", "active", "closing");
+      overlay.classList.remove("active");
+      isMenuOpen = false;
+      
+      // Changer l'icône en burger seulement à la fin de l'animation
+      menuIcon.className = "fa fa-bars";
+      
+      // Restaurer le scroll du body
+      document.body.style.overflow = "";
+    }, 200); // Durée de l'animation de sortie
+  }
+}
+
+// Fermer le menu si on clique sur un lien
+document.addEventListener("DOMContentLoaded", function() {
+  const menuLinks = document.querySelectorAll(".topnav.responsive a:not(.icon)");
+  menuLinks.forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+});
+
+// Fermer le menu avec la touche Escape
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape" && isMenuOpen) {
+    closeMenu();
+  }
+});
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
