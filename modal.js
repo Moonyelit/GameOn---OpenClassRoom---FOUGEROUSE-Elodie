@@ -1,6 +1,11 @@
 // Variables pour le menu burger
-let isMenuOpen = false;
+let isMenuOpen = false; // État du menu (ouvert/fermé)
 
+/**
+ * Fonction principale pour basculer l'état du menu burger
+ * Ouvre le menu s'il est fermé, le ferme s'il est ouvert
+ * Gère l'animation et l'icône du menu
+ */
 function editNav() {
   const topnav = document.getElementById("myTopnav");
   const overlay = document.getElementById("menuOverlay");
@@ -27,6 +32,11 @@ function editNav() {
   }
 }
 
+/**
+ * Ferme le menu burger avec animation
+ * Retire les classes CSS et restaure l'état initial
+ * Remet l'icône en burger et réactive le scroll
+ */
 function closeMenu() {
   const topnav = document.getElementById("myTopnav");
   const overlay = document.getElementById("menuOverlay");
@@ -52,6 +62,10 @@ function closeMenu() {
 }
 
 // Fermer le menu si on clique sur un lien
+/**
+ * Initialise les événements pour fermer le menu automatiquement
+ * Ferme le menu quand on clique sur un lien de navigation
+ */
 document.addEventListener("DOMContentLoaded", function() {
   const menuLinks = document.querySelectorAll(".topnav.responsive a:not(.icon)");
   menuLinks.forEach(link => {
@@ -59,26 +73,32 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-// Fermer le menu avec la touche Escape
+/**
+ * Ferme le menu avec la touche Escape
+ * Écoute les événements clavier pour une meilleure accessibilité
+ */
 document.addEventListener("keydown", function(event) {
   if (event.key === "Escape" && isMenuOpen) {
     closeMenu();
   }
 });
 
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector(".close");
+// DOM Elements - Sélection des éléments du modal
+const modalbg = document.querySelector(".bground"); // Arrière-plan du modal
+const modalBtn = document.querySelectorAll(".modal-btn"); // Boutons pour ouvrir le modal
+const formData = document.querySelectorAll(".formData"); // Champs du formulaire
+const closeBtn = document.querySelector(".close"); // Bouton de fermeture
 
-// launch modal event
+// launch modal event - Événement pour ouvrir le modal
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// close modal event
+// close modal event - Événement pour fermer le modal
 closeBtn.addEventListener("click", closeModal);
 
-// Add real-time validation
+/**
+ * Initialise la validation en temps réel des champs du formulaire
+ * Ajoute des écouteurs d'événements sur chaque champ pour valider à la perte de focus
+ */
 document.addEventListener("DOMContentLoaded", function() {
   const first = document.getElementById("first");
   const last = document.getElementById("last");
@@ -88,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const locations = document.querySelectorAll('input[name="location"]');
   const checkbox1 = document.getElementById("checkbox1");
   
+  // Ajouter les écouteurs d'événements pour chaque champ
   if (first) first.addEventListener("blur", validateFirst);
   if (last) last.addEventListener("blur", validateLast);
   if (email) email.addEventListener("blur", validateEmail);
@@ -101,12 +122,18 @@ document.addEventListener("DOMContentLoaded", function() {
   if (checkbox1) checkbox1.addEventListener("change", validateCheckbox1);
 });
 
-// launch modal form
+/**
+ * Ouvre le modal de formulaire
+ * Ajoute la classe CSS "show" pour afficher le modal
+ */
 function launchModal() {
   modalbg.classList.add("show");
 }
 
-// close modal form
+/**
+ * Ferme le modal de formulaire avec animation
+ * Ajoute la classe "closing" puis retire toutes les classes après l'animation
+ */
 function closeModal() {
   modalbg.classList.add("closing");
   setTimeout(() => {
@@ -114,7 +141,13 @@ function closeModal() {
   }, 800); // 800ms correspond à la durée de l'animation définie dans --modal-duration
 }
 
-// Validation functions
+// Validation functions - Fonctions de validation des champs
+
+/**
+ * Valide le champ prénom
+ * Vérifie que le prénom contient au moins 2 caractères
+ * @returns {boolean} true si valide, false sinon
+ */
 function validateFirst() {
   const first = document.getElementById("first");
   const firstValue = first.value.trim();
@@ -130,6 +163,11 @@ function validateFirst() {
   }
 }
 
+/**
+ * Valide le champ nom
+ * Vérifie que le nom contient au moins 2 caractères
+ * @returns {boolean} true si valide, false sinon
+ */
 function validateLast() {
   const last = document.getElementById("last");
   const lastValue = last.value.trim();
@@ -145,6 +183,11 @@ function validateLast() {
   }
 }
 
+/**
+ * Valide le champ email
+ * Vérifie que l'email respecte le format standard (exemple@domaine.com)
+ * @returns {boolean} true si valide, false sinon
+ */
 function validateEmail() {
   const email = document.getElementById("email");
   const emailValue = email.value.trim();
@@ -161,6 +204,11 @@ function validateEmail() {
   }
 }
 
+/**
+ * Valide le champ date de naissance
+ * Vérifie que la date de naissance est renseignée
+ * @returns {boolean} true si valide, false sinon
+ */
 function validateBirthdate() {
   const birthdate = document.getElementById("birthdate");
   const birthdateValue = birthdate.value;
@@ -176,6 +224,11 @@ function validateBirthdate() {
   }
 }
 
+/**
+ * Valide le champ quantité
+ * Vérifie que la quantité est un nombre entre 0 et 99
+ * @returns {boolean} true si valide, false sinon
+ */
 function validateQuantity() {
   const quantity = document.getElementById("quantity");
   const quantityValue = quantity.value;
@@ -191,6 +244,11 @@ function validateQuantity() {
   }
 }
 
+/**
+ * Valide le champ localisation (boutons radio)
+ * Vérifie qu'au moins une option de localisation est sélectionnée
+ * @returns {boolean} true si valide, false sinon
+ */
 function validateLocation() {
   const locations = document.querySelectorAll('input[name="location"]');
   const locationData = locations[0].closest(".formData");
@@ -212,6 +270,11 @@ function validateLocation() {
   }
 }
 
+/**
+ * Valide la checkbox des conditions d'utilisation
+ * Vérifie que l'utilisateur a accepté les termes et conditions
+ * @returns {boolean} true si valide, false sinon
+ */
 function validateCheckbox1() {
   const checkbox1 = document.getElementById("checkbox1");
   const checkbox1Data = checkbox1.closest(".formData");
@@ -226,7 +289,11 @@ function validateCheckbox1() {
   }
 }
 
-// Main validation function
+/**
+ * Fonction principale de validation du formulaire
+ * Valide tous les champs et affiche la confirmation si tout est valide
+ * @returns {boolean} false pour empêcher la soumission normale du formulaire
+ */
 function validate() {
   const isFirstValid = validateFirst();
   const isLastValid = validateLast();
@@ -246,7 +313,10 @@ function validate() {
   return false; // Empêche la soumission si validation échoue
 }
 
-// Show confirmation message
+/**
+ * Affiche le message de confirmation après validation réussie
+ * Remplace le contenu du formulaire par un message de remerciement
+ */
 function showConfirmation() {
   const modalBody = document.querySelector(".modal-body");
   const form = document.querySelector("form[name='reserve']");
