@@ -220,6 +220,8 @@ input {
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
+  background: transparent;
+  border: none;
 }
 
 .close:before,
