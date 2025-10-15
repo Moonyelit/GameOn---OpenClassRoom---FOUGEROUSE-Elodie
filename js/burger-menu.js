@@ -94,6 +94,18 @@ document.addEventListener("DOMContentLoaded", function () {
   menuLinks.forEach(link => {
     link.addEventListener("click", closeMenu);
   });
+
+  // Event hydration: Add event listener to burger menu button
+  const burgerButton = document.querySelector(".icon");
+  if (burgerButton) {
+    burgerButton.addEventListener("click", editNav);
+  }
+
+  // Event hydration: Add event listener to menu overlay
+  const menuOverlay = document.getElementById("menuOverlay");
+  if (menuOverlay) {
+    menuOverlay.addEventListener("click", closeMenu);
+  }
 });
 
 /**

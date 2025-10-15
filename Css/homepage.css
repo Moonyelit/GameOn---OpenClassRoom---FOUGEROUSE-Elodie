@@ -167,7 +167,7 @@ body {
     display: none;
   }
 
-  .topnav a.icon {
+  .topnav .icon {
     display: block;
     position: absolute;
     right: 0rem;
@@ -275,7 +275,7 @@ body {
     border-bottom: none;
   }
 
-  .topnav.responsive a.icon {
+  .topnav.responsive .icon {
     position: absolute;
     right: 2rem;
     top: 2rem;
@@ -287,14 +287,14 @@ body {
     z-index: 1001;
   }
 
-  .topnav.responsive a.icon i {
+  .topnav.responsive .icon i {
     color: var(--color-primary);
     font-size: 2rem;
     transition: none;
   }
 
   /* Garder l'icône stable pendant la fermeture */
-  .topnav.responsive.closing a.icon {
+  .topnav.responsive.closing .icon {
     position: absolute;
     right: 2rem;
     top: 2rem;
@@ -338,7 +338,7 @@ body {
     font-size: 1.25rem;
   }
 
-  .topnav.responsive a.icon {
+  .topnav.responsive .icon {
     right: 1.5rem;
     top: 1.5rem;
     font-size: 1.75rem;
