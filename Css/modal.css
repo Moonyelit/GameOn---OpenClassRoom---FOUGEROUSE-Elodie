@@ -36,6 +36,8 @@
   position: relative;
   color: var(--color-text-white);
   padding: 0;
+  /* Correction : Optimisation des performances avec will-change */
+  will-change: transform, opacity;
 }
 
 .modal-body {
@@ -51,6 +53,7 @@ label {
   margin-bottom: 10px;
   color: var(--color-text-white);
 }
+
 input {
   padding: 12px;
   border: 1px solid #ccc;
@@ -58,6 +61,7 @@ input {
   background: white;
   color: #333;
 }
+
 .text-control {
   margin-bottom: 20px;
   padding: 12px;
@@ -70,6 +74,7 @@ input {
   color: #333;
   box-sizing: border-box;
 }
+
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.6em;
@@ -83,9 +88,11 @@ input {
   transition: 0.3s;
   font-weight: normal;
 }
+
 .formData[data-error-visible="true"]::after {
   opacity: 1;
 }
+
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid var(--color-error);
 }
@@ -120,6 +127,7 @@ input {
   display: block;
   margin-bottom: 15px;
 }
+
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
   display: block;
@@ -153,6 +161,7 @@ input {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
   content: "";
@@ -169,21 +178,26 @@ input {
   transition: 0.3s;
   opacity: 0;
 }
+
 .checkbox-input {
   display: none;
 }
-.checkbox-input:checked + .checkbox-label .checkbox-icon::after,
-.checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
+
+.checkbox-input:checked+.checkbox-label .checkbox-icon::after,
+.checkbox-input:checked+.checkbox2-label .checkbox-icon::after {
   opacity: 1;
 }
-.checkbox-input:checked + .checkbox2-label .checkbox-icon {
+
+.checkbox-input:checked+.checkbox2-label .checkbox-icon {
   background: #4CAF50;
 }
+
 .checkbox2-label .checkbox-icon {
   border-radius: 4px;
   border: 2px solid #4CAF50;
   background: transparent;
 }
+
 .checkbox2-label .checkbox-icon::after {
   width: 7px;
   height: 4px;
@@ -196,6 +210,7 @@ input {
   left: 21%;
   top: 19%;
 }
+
 .close {
   position: absolute;
   right: 15px;
@@ -206,6 +221,7 @@ input {
   cursor: pointer;
   transform: scale(0.7);
 }
+
 .close:before,
 .close:after {
   position: absolute;
@@ -215,15 +231,18 @@ input {
   width: 3px;
   background-color: var(--color-text-white);
 }
+
 .close:before {
   transform: rotate(45deg);
 }
+
 .close:after {
   transform: rotate(-45deg);
 }
 
 .bouton {
-  margin-inline: 8rem;
+  /* Correction : Réduction des marges excessives pour éviter les débordements */
+  margin-inline: 2rem;
 }
 
 /* Style du bouton de soumission */
@@ -244,13 +263,13 @@ input {
 
 @media screen and (max-width: 425px) {
   .bouton {
-    margin-inline: 6rem;
+    /* Correction : Réduction des marges pour les petits écrans */
+    margin-inline: 1rem;
   }
-  
+
   .btn-submit {
     font-size: 14px;
     padding: 9px 30px;
-  
   }
 }
 
@@ -269,6 +288,7 @@ input {
 .custom-select select {
   display: none;
 }
+
 .select-selected {
   background-color: var(--color-bg-primary);
 }
@@ -324,6 +344,7 @@ input {
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
 /* custom select end */
 
 @keyframes modalopen {
@@ -331,6 +352,7 @@ input {
     opacity: 0;
     transform: translateY(-150px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -342,6 +364,7 @@ input {
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(-150px);
@@ -415,11 +438,11 @@ input {
     justify-content: center;
     z-index: 1000;
   }
-  
+
   .bground.show {
     display: flex;
   }
-  
+
   .content {
     width: 100vw;
     height: calc(100vh - 80px);
@@ -435,16 +458,16 @@ input {
     overflow-y: auto;
     border-radius: 25px 25px 0 0;
   }
-  
+
   .modal-body {
     width: 100%;
     min-height: 100%;
-    padding: 55px 20px 20px ;
+    padding: 55px 20px 20px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
   }
-  
+
   .confirmation-message {
     width: 100%;
     max-width: none;
@@ -455,13 +478,13 @@ input {
     justify-content: flex-start;
     align-items: center;
   }
-  
+
   .confirmation-message h2 {
     font-size: 2.25rem;
     margin-bottom: 0;
     text-align: center;
   }
-  
+
   .confirmation-message .btn-submit {
     padding: 15px 40px;
     font-size: 1.1rem;

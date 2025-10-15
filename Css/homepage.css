@@ -50,7 +50,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  margin-right:-4rem;
+  margin-right: -4rem;
 }
 
 .topnav a:hover:not(.fa):not(.active) {
@@ -92,6 +92,8 @@ body {
   display: inline-block;
   font-size: 1.5rem;
   transform: rotate(0deg);
+  /* Correction : Optimisation des performances avec will-change */
+  will-change: transform, opacity;
 }
 
 .topnav .icon:hover i {
@@ -116,6 +118,7 @@ body {
     transform: rotate(-90deg);
     opacity: 0;
   }
+
   to {
     transform: rotate(0deg);
     opacity: 1;
@@ -252,10 +255,21 @@ body {
     opacity: 0.9;
   }
 
-  .topnav.responsive a:not(.icon):nth-child(1) { animation-delay: 0.1s; }
-  .topnav.responsive a:not(.icon):nth-child(2) { animation-delay: 0.2s; }
-  .topnav.responsive a:not(.icon):nth-child(3) { animation-delay: 0.3s; }
-  .topnav.responsive a:not(.icon):nth-child(4) { animation-delay: 0.4s; }
+  .topnav.responsive a:not(.icon):nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .topnav.responsive a:not(.icon):nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .topnav.responsive a:not(.icon):nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .topnav.responsive a:not(.icon):nth-child(4) {
+    animation-delay: 0.4s;
+  }
 
   .topnav.responsive a:last-child {
     border-bottom: none;
@@ -323,7 +337,7 @@ body {
     padding: 1rem 1.5rem;
     font-size: 1.25rem;
   }
-  
+
   .topnav.responsive a.icon {
     right: 1.5rem;
     top: 1.5rem;
@@ -333,6 +347,7 @@ body {
 
 /* Amélioration de l'accessibilité */
 @media (prefers-reduced-motion: reduce) {
+
   .topnav .icon,
   .topnav.responsive,
   .topnav.responsive a:not(.icon),
@@ -368,7 +383,8 @@ main {
 
 /*****************Hero section*****************/
 .hero-section {
-  height: clamp(45rem, 47.507rem + -5.0078vw, 43rem);;
+  /* Correction : Suppression du point-virgule double */
+  height: clamp(45rem, 47.507rem + -5.0078vw, 43rem);
   border-radius: var(--border-radius-primary);
   display: flex;
   flex-direction: row;
@@ -389,7 +405,8 @@ main {
   gap: 9rem;
   position: relative;
   z-index: 2;
-  margin-top: clamp(16rem, -21.9859rem + 45.5399vw, 19rem);;
+  /* Correction : Suppression du point-virgule double */
+  margin-top: clamp(16rem, -21.9859rem + 45.5399vw, 19rem);
 }
 
 .hero-headline {
@@ -445,6 +462,9 @@ main {
   top: 0;
   left: 0;
   border-radius: 0 8px 8px 0;
+  /* Correction : Optimisation des performances avec will-change et transform3d */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Responsive Hero Section pour 800px et en dessous */
@@ -530,15 +550,14 @@ footer {
 
 }
 
-  @media screen and (max-width: 800px) {
-    footer {
-      margin-left: 0;
-    }
-   
-    .copyrights {
-      text-align: center; 
-      margin-left: 0;
-      font-size: clamp(0.625rem, 0.3824rem + 1.0353vw, 0.9rem);
-    }
+@media screen and (max-width: 800px) {
+  footer {
+    margin-left: 0;
   }
 
+  .copyrights {
+    text-align: center;
+    margin-left: 0;
+    font-size: clamp(0.625rem, 0.3824rem + 1.0353vw, 0.9rem);
+  }
+}
