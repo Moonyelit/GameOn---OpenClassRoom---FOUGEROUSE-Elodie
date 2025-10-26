@@ -12,7 +12,6 @@ function editNav() {
   const icon = document.querySelector(".icon");
   const menuIcon = document.getElementById("menuIcon");
 
-  // Correction : Vérification de l'existence des éléments critiques
   if (!topnav || !overlay || !menuIcon) {
     console.error("Éléments du menu burger non trouvés");
     return;
@@ -24,7 +23,6 @@ function editNav() {
     overlay.classList.add("active");
     isMenuOpen = true;
 
-    // Correction : Mise à jour des attributs d'accessibilité
     icon.setAttribute("aria-expanded", "true");
     icon.setAttribute("aria-label", "Fermer le menu de navigation");
 
@@ -52,7 +50,6 @@ function closeMenu() {
   const overlay = document.getElementById("menuOverlay");
   const menuIcon = document.getElementById("menuIcon");
 
-  // Correction : Vérification de l'existence des éléments avant manipulation
   if (!topnav || !overlay || !menuIcon) {
     console.error("Éléments du menu burger non trouvés pour la fermeture");
     return;
@@ -68,7 +65,6 @@ function closeMenu() {
       overlay.classList.remove("active");
       isMenuOpen = false;
 
-      // Correction : Mise à jour des attributs d'accessibilité
       const icon = document.querySelector(".icon");
       if (icon) {
         icon.setAttribute("aria-expanded", "false");
@@ -89,7 +85,6 @@ function closeMenu() {
  * Ferme le menu quand on clique sur un lien de navigation
  */
 document.addEventListener("DOMContentLoaded", function () {
-  // Correction : Sélecteur corrigé pour cibler les liens de navigation
   const menuLinks = document.querySelectorAll(".main-navbar a:not(.icon)");
   menuLinks.forEach(link => {
     link.addEventListener("click", closeMenu);

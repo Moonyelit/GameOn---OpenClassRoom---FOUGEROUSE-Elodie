@@ -1,20 +1,87 @@
-// DOM Elements - Sélection des éléments du modal
-const modalbg = document.querySelector(".bground"); // Arrière-plan du modal
-const modalBtn = document.querySelectorAll(".modal-btn"); // Boutons pour ouvrir le modal
-const formData = document.querySelectorAll(".formData"); // Champs du formulaire
-const closeBtn = document.querySelector(".close"); // Bouton de fermeture
+// DOM Elements - Sélection des éléments du modal (seront initialisés après le chargement)
+let modalbg, modalBtn, formData, closeBtn;
 
-// launch modal event - Événement pour ouvrir le modal
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+// Variables globales pour le système modal
+let modalLoaded = false;
 
-// close modal event - Événement pour fermer le modal
-closeBtn.addEventListener("click", closeModal);
+/**
+ * Charge le contenu de la modal depuis modal-content.html
+ * et initialise les événements une fois le contenu chargé
+ */
+async function loadModal() {
+  const container = document.getElementById("modal-container");
+  
+  if (!container) {
+    console.error("Conteneur modal introuvable");
+    return;
+  }
+
+  try {
+    // Charger le contenu de modal-content.html
+    const response = await fetch("modal-content.html");
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP: ${response.status}`);
+    }
+    
+    const html = await response.text();
+    
+    // Insérer le contenu dans le conteneur
+    container.innerHTML = html;
+    
+    // Initialiser les éléments DOM une fois le contenu chargé
+    modalbg = document.querySelector(".bground");
+    modalBtn = document.querySelectorAll(".modal-btn");
+    formData = document.querySelectorAll(".formData");
+    closeBtn = document.querySelector(".close");
+    
+    // Attacher les événements
+    if (modalBtn && modalBtn.length > 0) {
+      modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+    }
+    
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeModal);
+    }
+    
+    // Initialiser la validation du formulaire
+    initializeValidation();
+    
+    // Initialiser la gestion de la soumission du formulaire (moderne)
+    initializeFormSubmission();
+    
+    modalLoaded = true;
+    console.log("Modal chargée avec succès");
+    
+  } catch (error) {
+    console.error("Erreur lors du chargement de la modal:", error);
+  }
+}
+
+// Charger la modal au chargement de la page
+window.addEventListener("DOMContentLoaded", () => {
+  loadModal();
+});
+
+/**
+ * Initialise la gestion moderne de la soumission du formulaire
+ * Remplace l'ancienne pratique onsubmit inline par un EventListener
+ */
+function initializeFormSubmission() {
+  const form = document.querySelector("form[name='reserve']");
+  
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // Empêche la soumission par défaut
+      validate(); // Appelle la fonction de validation
+    });
+  }
+}
 
 /**
  * Initialise la validation en temps réel des champs du formulaire
  * Ajoute des écouteurs d'événements sur chaque champ pour valider à la perte de focus
  */
-document.addEventListener("DOMContentLoaded", function () {
+function initializeValidation() {
   const first = document.getElementById("first");
   const last = document.getElementById("last");
   const email = document.getElementById("email");
@@ -35,19 +102,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   if (checkbox1) checkbox1.addEventListener("change", validateCheckbox1);
-});
+}
 
 /**
  * Ouvre le modal de formulaire
  * Ajoute la classe CSS "show" pour afficher le modal
  */
 function launchModal() {
+  if (!modalbg) {
+    modalbg = document.querySelector(".bground");
+  }
+  
+  if (!modalbg) {
+    console.error("Element .bground non trouvé");
+    return;
+  }
+  
   modalbg.classList.add("show");
 
-  // Correction : Mise à jour des attributs d'accessibilité
   modalbg.setAttribute("aria-hidden", "false");
 
-  // Correction : Gestion du focus pour l'accessibilité
   const firstInput = document.getElementById("first");
   if (firstInput) {
     setTimeout(() => firstInput.focus(), 100);
@@ -59,9 +133,17 @@ function launchModal() {
  * Ajoute la classe "closing" puis retire toutes les classes après l'animation
  */
 function closeModal() {
+  if (!modalbg) {
+    modalbg = document.querySelector(".bground");
+  }
+  
+  if (!modalbg) {
+    console.error("Element .bground non trouvé");
+    return;
+  }
+  
   modalbg.classList.add("closing");
 
-  // Correction : Mise à jour des attributs d'accessibilité
   modalbg.setAttribute("aria-hidden", "true");
 
   setTimeout(() => {
@@ -194,7 +276,6 @@ function validateQuantity() {
 function validateLocation() {
   const locations = document.querySelectorAll('input[name="location"]');
 
-  // Correction : Vérification de l'existence des éléments avant utilisation
   if (locations.length === 0) {
     console.error("Aucun élément de localisation trouvé");
     return false;
@@ -269,7 +350,6 @@ function validate() {
 function showConfirmation() {
   const modalBody = document.querySelector(".modal-body");
 
-  // Correction : Vérification de l'existence de l'élément avant manipulation
   if (!modalBody) {
     console.error("Élément modal-body non trouvé");
     return;
