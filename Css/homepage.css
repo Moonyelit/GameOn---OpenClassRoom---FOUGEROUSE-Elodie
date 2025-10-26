@@ -40,7 +40,6 @@ main {
 
 /*****************Hero section*****************/
 .hero-section {
-  /* Correction : Suppression du point-virgule double */
   height: clamp(45rem, 47.507rem + -5.0078vw, 43rem);
   border-radius: var(--border-radius-primary);
   display: flex;
@@ -62,7 +61,6 @@ main {
   gap: 9rem;
   position: relative;
   z-index: 2;
-  /* Correction : Suppression du point-virgule double */
   margin-top: clamp(16rem, -21.9859rem + 45.5399vw, 19rem);
 }
 
@@ -119,7 +117,6 @@ main {
   top: 0;
   left: 0;
   border-radius: 0 8px 8px 0;
-  /* Correction : Optimisation des performances avec will-change et transform3d */
   will-change: transform;
   transform: translateZ(0);
 }

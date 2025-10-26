@@ -1,6 +1,6 @@
 /********************************** Modal **********************************/
 
-/* Modal form */
+/*Conteneur modal disposition et style*/
 .bground {
   display: none;
   position: fixed;
@@ -15,15 +15,18 @@
   justify-content: center;
 }
 
+/*Style modal ouverte*/
 .bground.show {
   display: flex;
 }
 
+/*Animation fermeture modal*/
 .bground.closing .content {
   animation-name: modalclose;
   animation-duration: var(--modal-duration);
 }
 
+/*Contenu modal disposition et style*/
 .content {
   margin: 0;
   width: 100%;
@@ -36,15 +39,16 @@
   position: relative;
   color: var(--color-text-white);
   padding: 0;
-  /* Correction : Optimisation des performances avec will-change */
   will-change: transform, opacity;
 }
 
+/*Corps modal disposition*/
 .modal-body {
   padding: 30px 40px;
   margin: 0;
 }
 
+/*Labels disposition et style*/
 label {
   font-family: var(--font-default);
   font-size: 14px;
@@ -54,6 +58,7 @@ label {
   color: var(--color-text-white);
 }
 
+/*Inputs généraux disposition et style*/
 input {
   padding: 12px;
   border: 1px solid #ccc;
@@ -62,6 +67,7 @@ input {
   color: #333;
 }
 
+/*Champs texte disposition et style*/
 .text-control {
   margin-bottom: 20px;
   padding: 12px;
@@ -75,6 +81,7 @@ input {
   box-sizing: border-box;
 }
 
+/*Messages d'erreur disposition et style*/
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.6em;
@@ -93,10 +100,12 @@ input {
   opacity: 1;
 }
 
+/*Champs avec erreur bordure rouge*/
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid var(--color-error);
 }
 
+/*Labels texte disposition et style*/
 .text-label {
   font-family: var(--font-default);
   font-size: 14px;
@@ -106,6 +115,7 @@ input {
   color: var(--color-text-white);
 }
 
+/*Labels checkboxes radio disposition et style*/
 .checkbox-label {
   position: relative;
   margin-left: 36px;
@@ -128,6 +138,7 @@ input {
   margin-bottom: 15px;
 }
 
+/*Icônes checkboxes disposition et style*/
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
   display: block;
@@ -143,7 +154,7 @@ input {
   transition: 0.3s;
 }
 
-/* Grille pour les boutons radio des villes */
+/*Grille boutons radio villes disposition*/
 .radio-group {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -151,17 +162,20 @@ input {
   margin-bottom: 20px;
 }
 
+/*Items radio disposition*/
 .radio-item {
   display: flex;
   align-items: center;
 }
 
+/*Responsive grille radio*/
 @media (max-width: 600px) {
   .radio-group {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/*Icônes checkboxes état sélectionné*/
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
   content: "";
@@ -179,19 +193,23 @@ input {
   opacity: 0;
 }
 
+/*Inputs checkboxes masqués*/
 .checkbox-input {
   display: none;
 }
 
+/*Etat sélectionné checkboxes*/
 .checkbox-input:checked+.checkbox-label .checkbox-icon::after,
 .checkbox-input:checked+.checkbox2-label .checkbox-icon::after {
   opacity: 1;
 }
 
+/*Etat sélectionné checkbox2*/
 .checkbox-input:checked+.checkbox2-label .checkbox-icon {
   background: #4CAF50;
 }
 
+/*Icône checkbox2 disposition*/
 .checkbox2-label .checkbox-icon {
   border-radius: 4px;
   border: 2px solid #4CAF50;
@@ -211,6 +229,7 @@ input {
   top: 19%;
 }
 
+/*Bouton fermeture modal disposition et style*/
 .close {
   position: absolute;
   right: 15px;
@@ -224,6 +243,7 @@ input {
   border: none;
 }
 
+/*Croix fermeture création*/
 .close:before,
 .close:after {
   position: absolute;
@@ -242,12 +262,12 @@ input {
   transform: rotate(-45deg);
 }
 
+/*Conteneur bouton disposition*/
 .bouton {
-  /* Correction : Réduction des marges excessives pour éviter les débordements */
   margin-inline: 2rem;
 }
 
-/* Style du bouton de soumission */
+/*Bouton soumission disposition et style*/
 .btn-submit {
   background: var(--color-primary);
   border: none;
@@ -263,9 +283,14 @@ input {
   margin: 20px 0;
 }
 
+/*Style hover bouton soumission*/
+.btn-submit:hover {
+  background: var(--color-primary-hover-2);
+}
+
+/*Responsive boutons*/
 @media screen and (max-width: 425px) {
   .bouton {
-    /* Correction : Réduction des marges pour les petits écrans */
     margin-inline: 1rem;
   }
 
@@ -275,11 +300,7 @@ input {
   }
 }
 
-.btn-submit:hover {
-  background: var(--color-primary-hover-2);
-}
-
-/* custom select styles */
+/*Select personnalisé disposition et style*/
 .custom-select {
   position: relative;
   font-family: Arial;
@@ -291,11 +312,12 @@ input {
   display: none;
 }
 
+/*Select sélectionné style*/
 .select-selected {
   background-color: var(--color-bg-primary);
 }
 
-/* Style the arrow inside the select element: */
+/*Flèche select style*/
 .select-selected:after {
   position: absolute;
   content: "";
@@ -310,7 +332,7 @@ input {
   border-radius: 5px 0 5px 0;
 }
 
-/* Point the arrow upwards when the select box is open (active): */
+/*Flèche select ouverte*/
 .select-selected.select-arrow-active:after {
   transform: rotate(135deg);
   top: 13px;
@@ -327,7 +349,7 @@ input {
   height: 48px;
 }
 
-/* Style items (options): */
+/*Options select disposition*/
 .select-items {
   position: absolute;
   background-color: var(--color-bg-primary);
@@ -337,17 +359,18 @@ input {
   z-index: 99;
 }
 
-/* Hide the items when the select box is closed: */
+/*Masquer items select fermé*/
 .select-hide {
   display: none;
 }
 
+/*Style hover items select*/
 .select-items div:hover,
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* custom select end */
+/*Animation ouverture modal*/
 
 @keyframes modalopen {
   from {
@@ -361,6 +384,7 @@ input {
   }
 }
 
+/*Animation fermeture modal*/
 @keyframes modalclose {
   from {
     opacity: 1;
@@ -373,7 +397,7 @@ input {
   }
 }
 
-/* Confirmation message styles */
+/*Message confirmation disposition et style*/
 .confirmation-message {
   text-align: center;
   padding: 0px 40px;
@@ -389,6 +413,7 @@ input {
   opacity: 1;
 }
 
+/*Conteneur message confirmation disposition*/
 .confirmation-message .message-container {
   display: flex;
   flex-direction: column;
@@ -397,6 +422,7 @@ input {
   flex: 1;
 }
 
+/*Titre message confirmation style*/
 .confirmation-message h2 {
   font-size: 2.25rem;
   margin-bottom: 0;
@@ -407,6 +433,7 @@ input {
   padding-inline: 3.2rem;
 }
 
+/*Bouton message confirmation style*/
 .confirmation-message .btn-submit {
   background: var(--color-primary);
   border: none;
@@ -422,11 +449,12 @@ input {
   margin-bottom: 40px;
 }
 
+/*Style hover bouton message confirmation*/
 .confirmation-message .btn-submit:hover {
   background: var(--color-primary-hover);
 }
 
-/* Mobile styles for popup full screen */
+/*Responsive modal mobile*/
 @media screen and (max-width: 800px) {
   .bground {
     position: fixed;
@@ -441,10 +469,12 @@ input {
     z-index: 1000;
   }
 
+  /*Modal ouverte mobile*/
   .bground.show {
     display: flex;
   }
 
+  /*Contenu modal mobile disposition*/
   .content {
     width: 100vw;
     height: calc(100vh - 80px);
@@ -461,6 +491,7 @@ input {
     border-radius: 25px 25px 0 0;
   }
 
+  /*Corps modal mobile disposition*/
   .modal-body {
     width: 100%;
     min-height: 100%;
@@ -470,6 +501,7 @@ input {
     justify-content: center;
   }
 
+  /*Message confirmation mobile disposition*/
   .confirmation-message {
     width: 100%;
     max-width: none;
@@ -481,12 +513,14 @@ input {
     align-items: center;
   }
 
+  /*Titre message confirmation mobile style*/
   .confirmation-message h2 {
     font-size: 2.25rem;
     margin-bottom: 0;
     text-align: center;
   }
 
+  /*Bouton message confirmation mobile style*/
   .confirmation-message .btn-submit {
     padding: 15px 40px;
     font-size: 1.1rem;
