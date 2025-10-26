@@ -6,12 +6,12 @@
 /*****************Navbar******************/
 .topnav {
   margin-block: 3.5vh;
-  margin-right: clamp(0rem, 5.0141rem + -10.0156vw, -4rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: clamp(0.75rem, 0.2799rem + 0.939vw, 1.125rem);
   flex-wrap: wrap;
+  margin-left: clamp(0rem, -3.125rem + 6.25vw, 2.5rem);
 }
 
 /*Logo*/
@@ -35,7 +35,6 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
-  margin-right: -4rem;
 }
 
 /*Liste de navigation disposition*/

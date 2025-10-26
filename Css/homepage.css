@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   font-family: var(--font-default);
   font-size: 18px;
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: clamp(2rem, 2.2535rem + -2.5039vw, 0rem);
 }
@@ -29,6 +29,10 @@ body {
 
 main {
   padding-top: 1.5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Responsive Main pour 800px et en dessous */
@@ -58,7 +62,7 @@ main {
   width: 40%;
   display: flex;
   flex-direction: column;
-  gap: 9rem;
+  gap: 7rem;
   position: relative;
   z-index: 2;
   margin-top: clamp(16rem, -21.9859rem + 45.5399vw, 19rem);

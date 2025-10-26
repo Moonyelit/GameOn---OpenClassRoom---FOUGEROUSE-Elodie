@@ -160,6 +160,7 @@ input {
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   margin-bottom: 20px;
+  border: none;
 }
 
 /*Items radio disposition*/
