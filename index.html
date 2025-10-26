@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
   <!-- CSS -->
-  <!-- Correction : Chemins CSS corrigés (./Css/ au lieu de ../Css/) -->
-  <link rel="stylesheet" href="./Css/reset.css" />
-  <link rel="stylesheet" href="./Css/variable.css" />
+  <!-- Styles communs (reset, variables, composants) -->
+  <link rel="stylesheet" href="./Css/main.css" />
+  <!-- Styles spécifiques à la homepage + modal -->
   <link rel="stylesheet" href="./Css/homepage.css" />
   <link rel="stylesheet" href="./Css/modal.css" />
-  <!-- Correction : Optimisation du chargement de Font Awesome avec preconnect -->
+  
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -26,7 +26,6 @@
 
 
 <body>
-  <!-- Correction : Ajout de role="navigation" et aria-label pour l'accessibilité -->
   <nav class="topnav" id="myTopnav" role="navigation" aria-label="Navigation principale">
     <div class="header-logo">
       <img alt="logo" src="./assets/images/Logo.png" width="auto" height="auto" />
@@ -70,7 +69,6 @@
       </button>
     </section>
 
-    <!-- Correction : Ajout d'aria-modal et role="dialog" pour l'accessibilité -->
     <div class="bground" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
       <div class="content">
         <!-- Correction : Ajout d'aria-label pour le bouton de fermeture -->

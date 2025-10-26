@@ -1,0 +1,4 @@
+/* Import des styles communs à toutes les pages */
+@import url('./reset.css');
+@import url('./variable.css');
+
