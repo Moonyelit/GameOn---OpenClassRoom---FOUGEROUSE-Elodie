@@ -1,0 +1,27 @@
+/********************************************************************************/
+/********************************** Footer *************************************/
+/********************************************************************************/
+
+footer {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.copyrights {
+  font-size: 0.9rem;
+  margin-left: clamp(0rem, 5.0141rem + -10.0156vw, -3rem);
+  margin-left: -4rem;
+}
+
+@media screen and (max-width: 800px) {
+  footer {
+    margin-left: 0;
+  }
+
+  .copyrights {
+    text-align: center;
+    margin-left: 0;
+    font-size: clamp(0.625rem, 0.3824rem + 1.0353vw, 0.9rem);
+  }
+}
+

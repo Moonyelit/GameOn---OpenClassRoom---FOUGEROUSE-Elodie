@@ -1,0 +1,376 @@
+/********************************************************************************/
+/********************************** Navbar *************************************/
+/********************************************************************************/
+
+/****************************************/
+/*****************Navbar******************/
+.topnav {
+  margin-block: 3.5vh;
+  margin-right: clamp(0rem, 5.0141rem + -10.0156vw, -4rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: clamp(0.75rem, 0.2799rem + 0.939vw, 1.125rem);
+  flex-wrap: wrap;
+}
+
+/*Logo*/
+.header-logo img {
+  width: clamp(9.5rem, -20.8732rem + 43.1925vw, 18rem);
+  margin-right: 4rem;
+}
+
+/*Liens de navigation style*/
+.topnav a {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  padding: 12px 12px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.7s ease;
+}
+
+/*Menu de navigation disposition*/
+.main-navbar {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-right: -4rem;
+}
+
+/*Liste de navigation disposition*/
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*Reset listes navigation*/
+.nav-list li {
+  margin: 0;
+  padding: 0;
+}
+
+/*Style hover liens navigation*/
+.topnav a:hover:not(.fa):not(.active) {
+  background-color: var(--color-primary);
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius-primary);
+  padding: 10px 10px;
+}
+
+/*Style active liens navigation*/
+.topnav a.active {
+  background-color: var(--color-primary);
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/******************************************************************************/
+/***********************************Menu burger*******************************/
+
+/*Bouton burger disposition et style*/
+.topnav .icon {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--color-text-primary);
+  transition: color var(--menu-duration) var(--menu-easing);
+  position: relative;
+  z-index: 1002;
+}
+
+/*Style hover bouton burger*/
+.topnav .icon:hover {
+  color: var(--color-primary);
+}
+
+/* Animation du bouton burger */
+.topnav .icon i {
+  transition: all var(--menu-duration) var(--menu-easing);
+  display: inline-block;
+  font-size: 1.5rem;
+  transform: rotate(0deg);
+  will-change: transform, opacity;
+}
+
+/*Style hover icône burger*/
+.topnav .icon:hover i {
+  color: var(--color-primary);
+}
+
+/* Animation de rotation de l'icône */
+.topnav .icon i.fa-times {
+  transform: rotate(0deg);
+  animation: rotateIn 0.3s var(--menu-easing) forwards;
+}
+
+/* Garder l'icône croix stable pendant la fermeture */
+.topnav.responsive.closing .icon i.fa-times {
+  animation: none;
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/*********************************************************************************************/
+/***********************************Overlay*******************************/
+/*Overlay disposition et style*/
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--menu-duration) var(--menu-easing);
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Navigation responsive */
+@media screen and (max-width: 800px) {
+  .topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    background: var(--color-bg-primary);
+    margin-right: 0;
+    padding: 2rem;
+    margin-block: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /*Menu de navigation disposition*/
+  .main-navbar {
+    margin-right: 0;
+  }
+
+  /*Liens de navigation disposition*/
+  .topnav a:not(.icon) {
+    display: none;
+  }
+
+  /*Bouton burger disposition et style*/
+  .topnav .icon {
+    display: block;
+    position: absolute;
+    right: 0rem;
+    color: var(--color-text-primary);
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 1.5rem;
+  }
+
+  /*Style icône burger*/
+  .fa-bars {
+    color: var(--color-primary);
+  }
+
+  /*********************************************************************************************/
+  /***********************************Menu mobile*******************************/
+  /*Menu mobile disposition et style*/
+  .topnav.responsive {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-bg-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform var(--menu-duration) var(--menu-easing);
+    z-index: 1000;
+    padding: 0;
+    margin: 0;
+  }
+
+  /*Style active menu mobile*/
+  .topnav.responsive.active {
+    transform: translateX(0);
+  }
+
+  /*Menu mobile disposition et style*/
+  .topnav.responsive .main-navbar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+  }
+
+  /*Liste de navigation disposition*/
+  .topnav.responsive .nav-list {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  /*Liens de navigation disposition*/
+  .topnav.responsive a:not(.icon) {
+    display: table-cell !important;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-radius: var(--border-radius-primary);
+    transition: all var(--menu-duration) var(--menu-easing);
+    transform: translateX(50px);
+    opacity: 0;
+    animation: slideInFromRight 0.6s var(--menu-easing) forwards;
+    width: 80%;
+    max-width: 300px;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* Garder le style active pour le lien actif dans le menu mobile */
+  .topnav.responsive a:not(.icon).active {
+    background: var(--color-primary) !important;
+    color: var(--color-text-white) !important;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /*Style hover liens navigation*/
+  .topnav.responsive a:not(.icon):hover:not(.active) {
+    background: var(--color-primary) !important;
+    color: var(--color-text-white) !important;
+    transform: translateX(0) scale(1.05);
+  }
+
+  /* Hover pour le lien actif - effet plus subtil */
+  .topnav.responsive a:not(.icon).active:hover {
+    background: var(--color-primary) !important;
+    color: var(--color-text-white) !important;
+    transform: translateX(0) scale(1.05);
+    opacity: 0.9;
+  }
+
+
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    transform: none;
+    font-size: 2rem;
+    background: none !important;
+    border: none !important;
+    padding: 0.5rem;
+    z-index: 1001;
+  }
+
+  .topnav.responsive .icon i {
+    color: var(--color-primary);
+    font-size: 2rem;
+    transition: none;
+  }
+
+  /* Garder l'icône stable pendant la fermeture */
+  .topnav.responsive.closing .icon {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    transform: none;
+  }
+
+  .header-logo img {
+    width: 8rem;
+    margin-right: 0;
+  }
+
+  /* Cacher le logo dans le menu mobile ouvert */
+  .topnav.responsive .header-logo {
+    display: none;
+  }
+
+  /* Animation d'entrée des éléments du menu */
+  @keyframes slideInFromRight {
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Animation de sortie des éléments du menu */
+  .topnav.responsive.closing a:not(.icon) {
+    animation: slideOutToRight 0.2s var(--menu-easing) forwards;
+  }
+
+  @keyframes slideOutToRight {
+    to {
+      transform: translateX(30px);
+      opacity: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .topnav.responsive a:not(.icon) {
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .topnav.responsive .icon {
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 1.75rem;
+  }
+}
+
+/* Amélioration de l'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+
+  .topnav .icon,
+  .topnav.responsive,
+  .topnav.responsive a:not(.icon),
+  .menu-overlay {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Focus visible pour l'accessibilité */
+.topnav .icon:focus-visible,
+.topnav.responsive a:not(.icon):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+

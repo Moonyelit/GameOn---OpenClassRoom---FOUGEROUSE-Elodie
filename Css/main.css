@@ -1,4 +1,6 @@
 /* Import des styles communs à toutes les pages */
 @import url('./reset.css');
 @import url('./variable.css');
+@import url('./navbar.css');
+@import url('./footer.css');
 

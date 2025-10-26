@@ -30,7 +30,7 @@
   max-width: 535px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
-  background: #282828;
+  background:var(--color-bg-secondary);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
