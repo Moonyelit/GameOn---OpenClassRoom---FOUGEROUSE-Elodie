@@ -53,6 +53,20 @@ body {
   margin-right: -4rem;
 }
 
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  margin: 0;
+  padding: 0;
+}
+
 .topnav a:hover:not(.fa):not(.active) {
   background-color: var(--color-primary);
   color: var(--color-text-secondary);
@@ -212,6 +226,15 @@ body {
     justify-content: center;
     width: 100%;
     height: 100%;
+    gap: 1rem;
+  }
+
+  /* Optimisation SEO : Ajustement de la liste pour le menu responsive */
+  .topnav.responsive .nav-list {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
     gap: 1rem;
   }
 

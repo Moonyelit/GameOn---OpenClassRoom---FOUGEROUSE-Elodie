@@ -31,10 +31,13 @@
       <img alt="logo" src="./assets/images/Logo.png" width="auto" height="auto" />
     </div>
     <div class="main-navbar">
-      <a href="#" class="active" aria-current="page"><span>Détails de l'évènement</span></a>
-      <a href="#" aria-label="En savoir plus sur nous"><span>À Propos</span></a>
-      <a href="#" aria-label="Nous contacter"><span>Contact</span></a>
-      <a href="#" aria-label="Voir les évènements passés"><span>Évènements passés</span></a>
+      <!-- Optimisation SEO : utilisation de la liste ul/li pour une meilleure sémantique -->
+      <ul class="nav-list">
+        <li><a href="#" class="active" aria-current="page"><span>Détails de l'évènement</span></a></li>
+        <li><a href="#" aria-label="En savoir plus sur nous"><span>À Propos</span></a></li>
+        <li><a href="#" aria-label="Nous contacter"><span>Contact</span></a></li>
+        <li><a href="#" aria-label="Voir les évènements passés"><span>Évènements passés</span></a></li>
+      </ul>
       <!-- button  au lieu de a pour une meilleures sémantique et correction : Ajout d'aria-label pour l'accessibilité -->
       <button type="button" class="icon" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
         <i class="fa fa-bars" id="menuIcon"></i>
