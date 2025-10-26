@@ -14,7 +14,7 @@ closeBtn.addEventListener("click", closeModal);
  * Initialise la validation en temps réel des champs du formulaire
  * Ajoute des écouteurs d'événements sur chaque champ pour valider à la perte de focus
  */
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const first = document.getElementById("first");
   const last = document.getElementById("last");
   const email = document.getElementById("email");
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const quantity = document.getElementById("quantity");
   const locations = document.querySelectorAll('input[name="location"]');
   const checkbox1 = document.getElementById("checkbox1");
-  
+
   // Ajouter les écouteurs d'événements pour chaque champ
   if (first) first.addEventListener("blur", validateFirst);
   if (last) last.addEventListener("blur", validateLast);
@@ -43,6 +43,15 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 function launchModal() {
   modalbg.classList.add("show");
+
+  // Correction : Mise à jour des attributs d'accessibilité
+  modalbg.setAttribute("aria-hidden", "false");
+
+  // Correction : Gestion du focus pour l'accessibilité
+  const firstInput = document.getElementById("first");
+  if (firstInput) {
+    setTimeout(() => firstInput.focus(), 100);
+  }
 }
 
 /**
@@ -51,6 +60,10 @@ function launchModal() {
  */
 function closeModal() {
   modalbg.classList.add("closing");
+
+  // Correction : Mise à jour des attributs d'accessibilité
+  modalbg.setAttribute("aria-hidden", "true");
+
   setTimeout(() => {
     modalbg.classList.remove("show", "closing");
   }, 800); // 800ms correspond à la durée de l'animation définie dans --modal-duration
@@ -67,10 +80,10 @@ function validateFirst() {
   const first = document.getElementById("first");
   const firstValue = first.value.trim();
   const firstData = first.closest(".formData");
-  
+
   // Regex pour prénom : lettres, espaces, tirets, apostrophes (minimum 2 caractères)
   const nameRegex = /^[a-zA-ZÀ-ÿ\s\-']{2,}$/;
-  
+
   if (firstValue.length < 2) {
     firstData.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du prénom.");
     firstData.setAttribute("data-error-visible", "true");
@@ -94,10 +107,10 @@ function validateLast() {
   const last = document.getElementById("last");
   const lastValue = last.value.trim();
   const lastData = last.closest(".formData");
-  
+
   // Regex pour nom : lettres, espaces, tirets, apostrophes (minimum 2 caractères)
   const nameRegex = /^[a-zA-ZÀ-ÿ\s\-']{2,}$/;
-  
+
   if (lastValue.length < 2) {
     lastData.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
     lastData.setAttribute("data-error-visible", "true");
@@ -122,7 +135,7 @@ function validateEmail() {
   const emailValue = email.value.trim();
   const emailData = email.closest(".formData");
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
+
   if (!emailRegex.test(emailValue)) {
     emailData.setAttribute("data-error", "Veuillez entrer une adresse email valide.");
     emailData.setAttribute("data-error-visible", "true");
@@ -142,7 +155,7 @@ function validateBirthdate() {
   const birthdate = document.getElementById("birthdate");
   const birthdateValue = birthdate.value;
   const birthdateData = birthdate.closest(".formData");
-  
+
   if (!birthdateValue) {
     birthdateData.setAttribute("data-error", "Vous devez entrer votre date de naissance.");
     birthdateData.setAttribute("data-error-visible", "true");
@@ -162,7 +175,7 @@ function validateQuantity() {
   const quantity = document.getElementById("quantity");
   const quantityValue = quantity.value;
   const quantityData = quantity.closest(".formData");
-  
+
   if (!quantityValue || isNaN(quantityValue) || quantityValue < 0 || quantityValue > 99) {
     quantityData.setAttribute("data-error", "Veuillez entrer un nombre valide entre 0 et 99.");
     quantityData.setAttribute("data-error-visible", "true");
@@ -180,15 +193,22 @@ function validateQuantity() {
  */
 function validateLocation() {
   const locations = document.querySelectorAll('input[name="location"]');
+
+  // Correction : Vérification de l'existence des éléments avant utilisation
+  if (locations.length === 0) {
+    console.error("Aucun élément de localisation trouvé");
+    return false;
+  }
+
   const locationData = locations[0].closest(".formData");
   let isChecked = false;
-  
+
   locations.forEach(location => {
     if (location.checked) {
       isChecked = true;
     }
   });
-  
+
   if (!isChecked) {
     locationData.setAttribute("data-error", "Vous devez choisir une option.");
     locationData.setAttribute("data-error-visible", "true");
@@ -207,7 +227,7 @@ function validateLocation() {
 function validateCheckbox1() {
   const checkbox1 = document.getElementById("checkbox1");
   const checkbox1Data = checkbox1.closest(".formData");
-  
+
   if (!checkbox1.checked) {
     checkbox1Data.setAttribute("data-error", "Vous devez vérifier que vous acceptez les termes et conditions.");
     checkbox1Data.setAttribute("data-error-visible", "true");
@@ -231,14 +251,14 @@ function validate() {
   const isQuantityValid = validateQuantity();
   const isLocationValid = validateLocation();
   const isCheckbox1Valid = validateCheckbox1();
-  
+
   const isValid = isFirstValid && isLastValid && isEmailValid && isBirthdateValid && isQuantityValid && isLocationValid && isCheckbox1Valid;
-  
+
   if (isValid) {
     showConfirmation();
     return false; // Empêche la soumission normale du formulaire
   }
-  
+
   return false; // Empêche la soumission si validation échoue
 }
 
@@ -248,8 +268,15 @@ function validate() {
  */
 function showConfirmation() {
   const modalBody = document.querySelector(".modal-body");
+
+  // Correction : Vérification de l'existence de l'élément avant manipulation
+  if (!modalBody) {
+    console.error("Élément modal-body non trouvé");
+    return;
+  }
+
   const form = document.querySelector("form[name='reserve']");
-  
+
   // Créer le message de confirmation
   const confirmationHTML = `
     <div class="confirmation-message">
@@ -259,7 +286,7 @@ function showConfirmation() {
       <button class="btn-submit" onclick="closeModal()">Fermer</button>
     </div>
   `;
-  
+
   // Remplacer le contenu du formulaire
   modalBody.innerHTML = confirmationHTML;
 }
