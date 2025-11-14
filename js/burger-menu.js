@@ -1,16 +1,34 @@
 // Variables pour le menu burger
+// NOTE: isMenuOpen est un type primitif (boolean) = affectation par VALEUR
 let isMenuOpen = false; // État du menu (ouvert/fermé)
+
+// Cache des éléments DOM pour éviter les requêtes répétées
+// NOTE: Ces variables stockent des RÉFÉRENCES aux objets DOM (affectation par référence)
+let topnav, overlay, menuIcon, icon;
+
+/**
+ * Initialise le cache des éléments DOM
+ * Évite les requêtes DOM répétées (optimisation de performance)
+ * 
+ * EXEMPLE d'affectation par RÉFÉRENCE :
+ * - topnav = référence à l'objet DOM (si on modifie topnav.classList, on modifie l'original)
+ */
+function initMenuElements() {
+  if (!topnav) topnav = document.getElementById("myTopnav");
+  if (!overlay) overlay = document.getElementById("menuOverlay");
+  if (!menuIcon) menuIcon = document.getElementById("menuIcon");
+  if (!icon) icon = document.querySelector(".icon");
+}
 
 /**
  * Fonction principale pour basculer l'état du menu burger
  * Ouvre le menu s'il est fermé, le ferme s'il est ouvert
  * Gère l'animation et l'icône du menu
+ * 
+ * OPTIMISATION: Utilise le cache des éléments DOM au lieu de requêtes répétées
  */
 function editNav() {
-  const topnav = document.getElementById("myTopnav");
-  const overlay = document.getElementById("menuOverlay");
-  const icon = document.querySelector(".icon");
-  const menuIcon = document.getElementById("menuIcon");
+  initMenuElements();
 
   if (!topnav || !overlay || !menuIcon) {
     console.error("Éléments du menu burger non trouvés");
@@ -19,12 +37,18 @@ function editNav() {
 
   if (!isMenuOpen) {
     // Ouvrir le menu
+    // NOTE: On modifie directement l'objet DOM via la référence
     topnav.classList.add("responsive");
     overlay.classList.add("active");
+    
+    // NOTE: isMenuOpen est un boolean (primitif) = affectation par valeur
+    // On modifie la variable locale, pas une référence
     isMenuOpen = true;
 
-    icon.setAttribute("aria-expanded", "true");
-    icon.setAttribute("aria-label", "Fermer le menu de navigation");
+    if (icon) {
+      icon.setAttribute("aria-expanded", "true");
+      icon.setAttribute("aria-label", "Fermer le menu de navigation");
+    }
 
     // Empêcher le scroll du body
     document.body.style.overflow = "hidden";
@@ -44,11 +68,11 @@ function editNav() {
  * Ferme le menu burger avec animation
  * Retire les classes CSS et restaure l'état initial
  * Remet l'icône en burger et réactive le scroll
+ * 
+ * OPTIMISATION: Utilise le cache des éléments DOM au lieu de requêtes répétées
  */
 function closeMenu() {
-  const topnav = document.getElementById("myTopnav");
-  const overlay = document.getElementById("menuOverlay");
-  const menuIcon = document.getElementById("menuIcon");
+  initMenuElements();
 
   if (!topnav || !overlay || !menuIcon) {
     console.error("Éléments du menu burger non trouvés pour la fermeture");
@@ -63,9 +87,10 @@ function closeMenu() {
     setTimeout(() => {
       topnav.classList.remove("responsive", "active", "closing");
       overlay.classList.remove("active");
+      
+      // NOTE: Modification d'une variable primitive (affectation par valeur)
       isMenuOpen = false;
 
-      const icon = document.querySelector(".icon");
       if (icon) {
         icon.setAttribute("aria-expanded", "false");
         icon.setAttribute("aria-label", "Ouvrir le menu de navigation");
