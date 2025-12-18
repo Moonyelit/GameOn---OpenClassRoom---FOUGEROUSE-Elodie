@@ -33,8 +33,22 @@ async function loadModal() {
     
     const html = await response.text();
     
-    // Insérer le contenu dans le conteneur
-    container.innerHTML = html;
+    // Extraire uniquement le contenu du body (pour éviter d'insérer html, head, etc.)
+    // Créer un élément temporaire pour parser le HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    
+    // Extraire le contenu du body ou directement le .bground
+    const bodyContent = tempDiv.querySelector('body');
+    const modalContent = bodyContent ? bodyContent.querySelector('.bground') : tempDiv.querySelector('.bground');
+    
+    // Insérer uniquement le contenu de la modal dans le conteneur
+    if (modalContent) {
+      container.innerHTML = modalContent.outerHTML;
+    } else {
+      // Fallback : utiliser le HTML tel quel si la structure n'est pas trouvée
+      container.innerHTML = html;
+    }
     
     // Initialiser les éléments DOM une fois le contenu chargé
     modalbg = document.querySelector(".bground");
